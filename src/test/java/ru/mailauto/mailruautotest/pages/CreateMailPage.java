@@ -1,6 +1,8 @@
 package ru.mailauto.mailruautotest.pages;
 
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -45,12 +47,10 @@ public class CreateMailPage {
 
     public void clickSendButton() {
         sendButton.click();
-        // Необходимость, без явного засыпания потока сообщение не отправляется
         try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            System.err.println("Ошибка ожидания потока");
-            e.printStackTrace();
+            driver.findElement(By.xpath("//a[@class='layer__link']"));
+        } catch (NoSuchElementException e){
+            Assertions.fail("Письмо не было отправлено!");
         }
     }
 
