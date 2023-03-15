@@ -45,6 +45,13 @@ public class CreateMailPage {
 
     public void clickSendButton() {
         sendButton.click();
+        // Необходимость, без явного засыпания потока сообщение не отправляется
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            System.err.println("Ошибка ожидания потока");
+            e.printStackTrace();
+        }
     }
 
 }
